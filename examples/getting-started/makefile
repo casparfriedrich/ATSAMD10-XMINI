@@ -1,14 +1,16 @@
+PROJECT_NAME = getting-started
+
 # ----- Configuration ----------------------------------------------------------
 
 include ../config.mk
-
-PROJECT_NAME = blink
 
 # ----- Sources ----------------------------------------------------------------
 
 include sdk.mk
 
-SOURCE_FILES += src/main.cpp
+INCLUDE_DIRS += src/config
+
+SOURCE_FILES += $(wildcard src/*.c)
 
 # ----- Libraries --------------------------------------------------------------
 
@@ -18,19 +20,18 @@ SOURCE_FILES += src/main.cpp
 
 # ----- Flags ------------------------------------------------------------------
 
-GCCFLAGS += -march=armv6-m
-GCCFLAGS += -mtune=cortex-m0-plus
-GCCFLAGS += -mthumb
+# GCCFLAGS +=
 
 # CPPFLAGS +=
 
-COMMON_COMPILER_FLAGS = -O3 -g -fdata-sections -ffunction-sections
+COMMON_COMPILER_FLAGS = -O3 -g -fdata-sections -ffunction-sections -fno-exceptions -nostdlib
 
 CFLAGS += $(COMMON_COMPILER_FLAGS)
 CFLAGS += -std=c11
 
 CXXFLAGS += $(COMMON_COMPILER_FLAGS)
 CXXFLAGS += -std=c++17
+CXXFLAGS += --fno-rtti
 
 LDFLAGS += --specs=nano.specs
 LDFLAGS += --specs=nosys.specs

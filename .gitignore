@@ -1,4 +1,12 @@
-**/bin
-**/obj
+**/_bin
+**/_obj
 
-**/*.zip
+*.bin
+*.d
+*.elf
+*.hex
+*.lss
+*.map
+*.o
+*.sym
+*.zip
